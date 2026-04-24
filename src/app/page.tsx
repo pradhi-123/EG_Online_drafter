@@ -404,7 +404,7 @@ export default function EngineeringGraphicsApp() {
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden relative">
 
         {/* LEFT SIDEBAR: PROMPT & TIMELINE */}
-        <div className={`${mobileSidebarOpen ? 'flex h-[45%]' : 'hidden'} lg:flex w-full lg:w-[450px] lg:h-full shrink-0 bg-slate-900 border-r border-white/10 flex-col z-20 shadow-[0_10px_30px_rgba(0,0,0,0.8)] lg:shadow-2xl relative overflow-hidden transition-all duration-500`}>
+        <div className={`${mobileSidebarOpen ? 'fixed inset-x-0 bottom-0 h-[75vh] w-full rounded-t-[2.5rem] bg-slate-900/60 backdrop-blur-3xl border-t border-white/20 z-[60] shadow-[0_-20px_50px_rgba(20,184,166,0.3)] flex' : 'hidden'} lg:relative lg:bottom-auto lg:inset-x-auto lg:h-full lg:flex lg:w-[450px] shrink-0 lg:bg-slate-900 lg:backdrop-blur-none lg:border-r lg:border-t-0 lg:border-white/10 lg:rounded-none flex-col lg:z-20 lg:shadow-2xl relative overflow-hidden transition-all duration-500`}>
 
           {/* PROMPT HEADER (STICKY) */}
           <div className="p-6 border-b border-white/10 bg-slate-900/90 backdrop-blur-3xl sticky top-0 z-30 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5)]">
@@ -412,7 +412,7 @@ export default function EngineeringGraphicsApp() {
             <div className="relative rounded-2xl overflow-hidden p-[2px] group">
               <div className="absolute inset-[-100%] animate-[spin_6s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0_300deg,#14b8a6_360deg)] opacity-70 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative bg-slate-900 rounded-[calc(1.5rem-2px)] p-4 shadow-inner">
-                <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} className="w-full bg-transparent border-none text-sm text-slate-200 focus:outline-none resize-none pb-12" rows={3} placeholder="Speak or type a drafting problem..." />
+                <textarea value={prompt} onChange={(e) => setPrompt(e.target.value)} className="w-full bg-transparent border-none text-sm text-slate-200 focus:outline-none resize-none pb-12" rows={3} placeholder="Type question here..." />
                 <div className="absolute bottom-3 right-3 flex gap-2">
                   <button onClick={toggleListening} className={`p-3 rounded-lg ${isListening ? 'bg-red-500 animate-pulse text-white shadow-lg' : 'bg-slate-800 text-slate-400 hover:text-white'} transition-all`}>
                     <Mic className="w-4 h-4" />
@@ -487,7 +487,7 @@ export default function EngineeringGraphicsApp() {
           {/* MOBILE TOGGLE FAB */}
           <button
             onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-            className="lg:hidden fixed bottom-6 right-6 z-50 bg-teal-600 hover:bg-teal-500 text-white rounded-full p-4 shadow-[0_10px_25px_rgba(20,184,166,0.6)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
+            className="lg:hidden fixed bottom-6 right-6 z-[70] bg-teal-600 hover:bg-teal-500 text-white rounded-full p-4 shadow-[0_10px_25px_rgba(20,184,166,0.6)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
           >
             {mobileSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
