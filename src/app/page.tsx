@@ -470,9 +470,9 @@ export default function EngineeringGraphicsApp() {
             )}
           </div>
 
-          {/* BOTTOM FIXED CONTROLS */}
+          {/* BOTTOM FIXED CONTROLS (DESKTOP) */}
           {mode === 'Learner' && currentStep > 0 && (
-            <div className="absolute bottom-0 w-full p-6 bg-gradient-to-t from-slate-950 via-slate-950 to-transparent z-40">
+            <div className="hidden lg:block absolute bottom-0 w-full p-6 bg-gradient-to-t from-slate-950 via-slate-950 to-transparent z-40">
               <div className="flex items-center gap-4 bg-slate-900/90 backdrop-blur-2xl p-2 rounded-2xl border border-teal-500/30 shadow-[0_10px_40px_rgba(0,0,0,0.8)]">
                 <button onClick={() => setCurrentStep(p => Math.max(1, p - 1))} disabled={currentStep === 1} className="flex-1 py-3 text-xs font-bold text-slate-400 hover:text-white rounded-xl transition-all disabled:opacity-30">Prev</button>
                 <button onClick={() => setCurrentStep(p => Math.min(7, p + 1))} disabled={currentStep === 7} className="flex-[2] py-3 bg-gradient-to-r from-teal-500 to-emerald-400 hover:from-teal-400 text-slate-950 rounded-xl text-xs font-black shadow-[0_0_15px_rgba(20,184,166,0.3)] transition-all disabled:opacity-30">Next Step</button>
@@ -484,13 +484,21 @@ export default function EngineeringGraphicsApp() {
         {/* RIGHT AREA: SVG DRAWING BOARD */}
         <div className="flex-1 w-full shrink-0 bg-[radial-gradient(ellipse_at_center,rgba(20,184,166,0.1),transparent_60%)] bg-slate-950 relative flex items-center justify-start lg:justify-center p-0 lg:p-8 z-10 overflow-x-auto overflow-y-hidden">
 
-          {/* MOBILE TOGGLE FAB */}
-          <button
-            onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
-            className="lg:hidden fixed bottom-6 right-6 z-[70] bg-teal-600 hover:bg-teal-500 text-white rounded-full p-4 shadow-[0_10px_25px_rgba(20,184,166,0.6)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
-          >
-            {mobileSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* MOBILE TOGGLE FAB AND CONTROLS */}
+          <div className="lg:hidden fixed bottom-6 left-6 right-6 z-[80] flex justify-between items-center gap-4 pointer-events-none">
+            {mode === 'Learner' && currentStep > 0 ? (
+               <div className="flex-1 flex items-center gap-3 bg-slate-900/90 backdrop-blur-2xl p-2 rounded-2xl border border-teal-500/30 shadow-[0_10px_40px_rgba(0,0,0,0.8)] pointer-events-auto">
+                 <button onClick={() => setCurrentStep(p => Math.max(1, p - 1))} disabled={currentStep === 1} className="flex-1 py-3 text-xs font-bold text-slate-400 hover:text-white bg-slate-800/80 rounded-xl transition-all disabled:opacity-30">Prev</button>
+                 <button onClick={() => setCurrentStep(p => Math.min(7, p + 1))} disabled={currentStep === 7} className="flex-[2] py-3 bg-gradient-to-r from-teal-500 to-emerald-400 text-slate-950 rounded-xl text-xs font-black shadow-[0_0_15px_rgba(20,184,166,0.3)] transition-all disabled:opacity-30">Next</button>
+               </div>
+            ) : <div className="flex-1" />}
+            <button
+              onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+              className="bg-teal-600 hover:bg-teal-500 text-white rounded-full p-4 shadow-[0_10px_25px_rgba(20,184,166,0.6)] flex items-center justify-center transition-transform hover:scale-110 active:scale-95 pointer-events-auto shrink-0"
+            >
+              {mobileSidebarOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </button>
+          </div>
 
           {/* PENCIL LEGEND AT TOP */}
           {currentStep > 0 && (

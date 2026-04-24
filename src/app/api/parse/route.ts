@@ -61,8 +61,9 @@ Only output the raw JSON, no markdown formatting.`;
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
+            generationConfig: { responseMimeType: "application/json" },
             contents: [{ role: "user", parts: [{ text: prompt }] }],
-            systemInstruction: { role: "system", parts: [{ text: sysInstruction }] }
+            systemInstruction: { role: "system", parts: [{ text: sysInstruction + "\nIMPORTANT: Ensure JSON array has exactly 8 strings and is perfectly valid." }] }
           })
         });
         
